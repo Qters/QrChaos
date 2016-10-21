@@ -1,0 +1,67 @@
+<RCC>
+    <qresource prefix="/header">
+        <file>images/blue/header/close_clk.png</file>
+        <file>images/blue/header/close_def.png</file>
+        <file>images/blue/header/close_hov.png</file>
+        <file>images/blue/header/max_clk.png</file>
+        <file>images/blue/header/max_def.png</file>
+        <file>images/blue/header/max_hov.png</file>
+        <file>images/blue/header/min_clk.png</file>
+        <file>images/blue/header/min_def.png</file>
+        <file>images/blue/header/min_hov.png</file>
+        <file>images/blue/header/restore_size_clk.png</file>
+        <file>images/blue/header/restore_size_def.png</file>
+        <file>images/blue/header/restore_size_hov.png</file>
+        <file>images/blue/header/setting_clk.png</file>
+        <file>images/blue/header/setting_def.png</file>
+        <file>images/blue/header/setting_hov.png</file>
+    </qresource>
+    <qresource prefix="/navigation">
+        <file>images/blue/navigation/splitter_close_clk.png</file>
+        <file>images/blue/navigation/splitter_close_def.png</file>
+        <file>images/blue/navigation/splitter_close_hov.png</file>
+        <file>images/blue/navigation/splitter_open_clk.png</file>
+        <file>images/blue/navigation/splitter_open_def.png</file>
+        <file>images/blue/navigation/splitter_open_hov.png</file>
+        <file>images/blue/navigation/splitter_clk.png</file>
+        <file>images/blue/navigation/splitter_def.png</file>
+        <file>images/blue/navigation/splitter_hov.png</file>
+    </qresource>
+    <qresource prefix="/qss">
+        <file>qsses/blue.qss</file>
+    </qresource>
+    <qresource prefix="/statusbar">
+        <file>images/blue/status_bar/full_mode.png</file>
+        <file>images/blue/status_bar/normal_def.png</file>
+        <file>images/blue/status_bar/simple_mode.png</file>
+        <file>images/blue/status_bar/normal_hover.png</file>
+    </qresource>
+    <qresource prefix="/workspace">
+        <file>images/blue/workspace/tabclose_clk.png</file>
+        <file>images/blue/workspace/tabclose_def.png</file>
+    </qresource>
+    <qresource prefix="/system_tray">
+        <file>images/blue/system_tray/about.png</file>
+        <file>images/blue/system_tray/check_update.png</file>
+        <file>images/blue/system_tray/help.png</file>
+        <file>images/blue/system_tray/setting.png</file>
+        <file>images/blue/system_tray/exit.png</file>
+        <file>images/blue/system_tray/systemtray.png</file>
+    </qresource>
+    <qresource prefix="/main_service">
+        <file>images/blue/main_service/main1.png</file>
+        <file>images/blue/main_service/main2.png</file>
+        <file>images/blue/main_service/main3.png</file>
+        <file>images/blue/main_service/main0.png</file>
+    </qresource>
+    <qresource prefix="/product_service">
+        <file>images/blue/product_service/product1.png</file>
+        <file>images/blue/product_service/product2.png</file>
+        <file>images/blue/product_service/product3.png</file>
+        <file>images/blue/product_service/product4.png</file>
+        <file>images/blue/product_service/product5.png</file>
+        <file>images/blue/product_service/product6.png</file>
+        <file>images/blue/product_service/product7.png</file>
+        <file>images/blue/product_service/product0.png</file>
+    </qresource>
+</RCC>

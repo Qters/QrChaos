@@ -1,0 +1,276 @@
+
+/*Begin
+----------------------------------------------------
+	Golbal
+----------------------------------------------------*/
+
+QPushButton {	
+	background-repeat : no-repeat ;
+	background-position : center ;
+}
+
+QToolButton {
+	border : none;
+	background-repeat : no-repeat;	
+	background-position : center;
+}
+
+/*
+----------------------------------------------------
+	Golbal
+----------------------------------------------------End*/
+
+/*Begin
+----------------------------------------------------
+	Custom  
+----------------------------------------------------*/
+
+
+/*BEGIN
+----------------------------------------------------
+	Header
+----------------------------------------------------*/
+
+/*header*/
+QFrame#framewindow_header {
+	height:30px;
+	background-color: #3E7ABC;
+}
+
+/*skin button*/
+QToolButton#header_skinButton{
+	width:30px;
+	height:23px;
+	background-image: url(:/header/images/blue/header/setting_def.png);
+}
+QToolButton#header_skinButton::menu-indicator { 
+	image: none; 
+} 
+QToolButton#header_skinButton:hover{
+	background-image: url(:/header/images/blue/header/setting_hov.png);
+}
+QToolButton#header_skinButton:pressed{
+	background-image: url(:/header/images/blue/header/setting_clk.png);
+}
+
+
+/*maximum button*/
+QToolButton#header_maximumnButton{
+	width:30px;
+	height:23px;
+	background-image: url(:/header/images/blue/header/max_def.png);
+}
+QToolButton#header_maximumnButton:hover{
+	background-image: url(:/header/images/blue/header/max_hov.png);
+}
+QToolButton#header_maximumnButton:pressed{
+	background-image: url(:/header/images/blue/header/max_clk.png);
+}
+
+
+/*restore button*/
+QToolButton#header_restoreBtn{
+	width:30px;
+	height:23px;
+	background-image: url(:/header/images/blue/header/restore_size_def.png);
+}
+QToolButton#header_restoreBtn:hover{
+	background-image: url(:/header/images/blue/header/restore_size_hov.png);
+}
+QToolButton#header_restoreBtn:pressed{
+	background-image: url(:/header/images/blue/header/restore_size_clk.png);
+}
+
+
+/*minimum button*/
+QToolButton#header_minimumButton{
+	width:30px;
+	height:23px;
+	background-image: url(:/header/images/blue/header/min_def.png);
+}
+QToolButton#header_minimumButton:hover{
+	background-image: url(:/header/images/blue/header/min_hov.png);
+}
+QToolButton#header_minimumButton:pressed{
+	background-image: url(:/header/images/blue/header/min_clk.png);
+}
+
+
+/*close button*/
+QToolButton#header_closeButton{
+	width:30px;
+	height:23px;
+	background-image: url(:/header/images/blue/header/close_def.png);
+}
+QToolButton#header_closeButton:hover{
+	background-image: url(:/header/images/blue/header/close_hov.png);
+}
+QToolButton#header_closeButton:pressed{
+	background-image: url(:/header/images/blue/header/close_clk.png);
+}
+
+/*
+----------------------------------------------------
+	Header
+----------------------------------------------------End*/
+
+
+/*Begin
+----------------------------------------------------
+	Navigation
+----------------------------------------------------*/
+/**/
+QTabBar#navigation_bar::tab {
+	height:30px;
+	width:79px;
+	border:none;
+}
+
+QTabBar#navigation_bar::tab:selected {
+	background-color:#3E7ABC;
+}
+
+QLineEdit#navigationHeader_search{
+	height:27px;
+	background-repeat:no-repeat;
+	background-color:#98BADD;
+}
+
+/*navigtaion tree*/
+QTreeView#navigationTabPage_view {
+	background-color:#DFE8F1;
+    border:none;
+}
+
+QTreeView#navigationTabPage_view::branch {
+	image:none;
+}
+
+QTreeView#navigationTabPage_view::item {
+	height:28px;
+}
+
+QTreeView#navigationTabPage_view::item:hover {
+	background-color:#9AC7F6;
+}
+
+QTreeView#navigationTabPage_view::item:selected {
+	background-color:#3E7ABC;
+}
+
+QTreeView::branch:has-children:!has-siblings:closed,
+QTreeView::branch:closed:has-children:has-siblings {
+    border-image: none;
+    image: url(:/navigation/images/blue/navigation/arrow_close.png);
+}
+
+QTreeView::branch:open:has-children:!has-siblings,
+QTreeView::branch:open:has-children:has-siblings {
+    border-image: none;
+    image: url(:/navigation/images/blue/navigation/arrow_open.png);
+}
+
+/*
+----------------------------------------------------
+Navigation
+----------------------------------------------------End*/
+
+
+
+/*Begin
+----------------------------------------------------
+	Spiliter
+----------------------------------------------------*/
+
+
+/*spiliter*/
+QSplitter#framewindow_spliter::handle:horizontal {
+	width:1px;
+	background-image: url(:/navigation/images/blue/navigation/splitter_def.png);
+}
+QSplitter#framewindow_spliter::handle:hover {
+	background-image: url(:/navigation/images/blue/navigation/splitter_hov.png);
+}
+QSplitter#framewindow_spliter::handle:pressed {
+	background-image: url(:/navigation/images/blue/navigation/splitter_clk.png);
+}
+
+/*spiliter handle button*/
+QPushButton#frameWindowSplitter_handleBtn {
+	border:none;
+	width:5px;
+	height:80px;
+}
+QPushButton#frameWindowSplitter_handleBtn[opened="false"] { 
+	background-image: url(:/navigation/images/blue/navigation/splitter_open_def.png);
+}
+QPushButton#frameWindowSplitter_handleBtn[opened="false"]:hover { 
+	background-image: url(:/navigation/images/blue/navigation/splitter_open_hov.png);
+}
+QPushButton#frameWindowSplitter_handleBtn[opened="false"]:pressed { 
+	background-image: url(:/navigation/images/blue/navigation/splitter_open_clk.png) ;
+}
+QPushButton#frameWindowSplitter_handleBtn[opened="true"] { 
+	background-image: url(:/navigation/images/blue/navigation/splitter_close_def.png);
+}
+QPushButton#frameWindowSplitter_handleBtn[opened="true"]:hover { 
+	background-image: url(:/navigation/images/blue/navigation/splitter_close_hov.png);
+}
+QPushButton#frameWindowSplitter_handleBtn[opened="true"]:pressed { 
+	background-image: url(:/navigation/images/blue/navigation/splitter_close_clk.png) ;
+}
+                      
+
+/*
+----------------------------------------------------
+	Spiliter
+----------------------------------------------------End*/
+
+/*Begin
+----------------------------------------------------
+	Workspace
+----------------------------------------------------*/
+QTabBar#workspace_tabbar::tab { 
+	width : 150px;
+}
+QTabBar#workspace_tabbar::close-button {
+	image: url(:/workspace/images/blue/workspace/tabclose_def.png);
+}
+
+QTabBar#workspace_tabbar::close-button:hover  {
+	image: url(:/workspace/images/blue/workspace/tabclose_clk.png);
+}
+
+/*
+----------------------------------------------------
+	Workspace
+----------------------------------------------------End*/
+
+
+/*Begin
+----------------------------------------------------
+	Statusbar
+----------------------------------------------------*/
+QStatusBar#framewindow_statusbar QPushButton {
+	background-color:transparent;
+}
+
+QPushButton#statusbar_normalmode {
+	background-image: url(:/statusbar/images/blue/status_bar/normal_def.png);
+}
+QPushButton#statusbar_normalmode:hover {
+	background-image: url(:/statusbar/images/blue/status_bar/normal_hover.png);
+}
+
+QPushButton#statusbar_simplemode {
+	background-image: url(:/statusbar/images/blue/status_bar/simple_mode.png);
+}
+
+QPushButton#statusbar_fullmode {
+	background-image: url(:/statusbar/images/blue/status_bar/full_mode.png);
+}
+
+/*
+----------------------------------------------------
+	Statusbar
+----------------------------------------------------End*/
