@@ -73,7 +73,7 @@ int QrWorkspace::appendTab(QWidget *widget, QString label)
 
     auto wrapWidget = new QScrollArea();
     wrapWidget->setWidget (widget);
-    wrapWidget->setWidgetResizable (true);
+    wrapWidget->setWidgetResizable (false);
     d->existedTabWidgets[widget] = wrapWidget;
 
     auto tabIndex = q->addTab(wrapWidget, label);
