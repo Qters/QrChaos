@@ -5,6 +5,7 @@
 #include <QtWidgets/qsystemtrayicon.h>
 #include <QtWidgets/qaction.h>
 #include <QtWidgets/qmenu.h>
+#include <QtWidgets/qapplication.h>
 
 #include "db/qrtblsystemtray.h"
 #include "db/qrtblframeconfig.h"
@@ -17,7 +18,9 @@ public:
     static QrSystemTrayPrivate *dInstance();
 
 public:
-    QrSystemTrayPrivate(QWidget* parent) : parent(parent) {}
+    QrSystemTrayPrivate(QWidget* parent);
+    ~QrSystemTrayPrivate();
+
     bool initTray();
     QAction *getAction(const QString& key);
 
@@ -37,6 +40,10 @@ QrSystemTrayPrivate *QrSystemTrayPrivate::dInstance(){
     Q_ASSERT(nullptr != QrSystemTrayPrivate::qInstance);
     return QrSystemTrayPrivate::qInstance->d_func();
 }
+
+QrSystemTrayPrivate::QrSystemTrayPrivate(QWidget *parent) : parent(parent) {}
+
+QrSystemTrayPrivate::~QrSystemTrayPrivate() {}
 
 QAction *QrSystemTrayPrivate::getAction(const QString &key) {
     Q_ASSERT(actions.contains(key));
@@ -79,6 +86,11 @@ bool QrSystemTrayPrivate::initTray() {
     systemTray.setContextMenu(&trayMenu);
 
     systemTray.show();
+
+    QObject::connect(qApp, &QApplication::aboutToQuit, [this](){
+        systemTray.hide();
+    });
+
     return true;
 }
 
