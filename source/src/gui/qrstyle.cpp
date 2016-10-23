@@ -1,4 +1,4 @@
-#include "gui/qrstyle.h"
+﻿#include "gui/qrstyle.h"
 
 #include <QtCore/qdebug.h>
 #include <QtCore/qfile.h>
@@ -29,6 +29,7 @@ bool QrStylePrivate::loadQss(const QString &qssFileName){
         return false;
     }
 
+    qDebug() << "load stylesheet success" << qssFileName;
     qssFile.open(QFile::ReadOnly | QFile::Text);
     QTextStream ts(&qssFile);
     qApp->setStyleSheet(ts.readAll());
@@ -78,8 +79,12 @@ const QVector<QrQssData>& QrStyle::getSkinDataInDB(bool clear /*= false*/)
         return QrStylePrivate::qssDbData;
     }
 
-    Q_FOREACH(auto qss, qsses.split(';')) {
-        auto qssProps = qss.split(',');
+    Q_FOREACH(QString qss, qsses.split(';')) {
+        if (qss.isEmpty()) {
+            continue;
+        }
+
+        QStringList qssProps = qss.split(',');
         if (3 != qssProps.size()) {
             qWarning() << "qss property in database in unrecognized." << qssProps;
             continue;

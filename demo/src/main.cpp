@@ -14,6 +14,7 @@ int main(int argc, char *argv[])
 {
     Qters::QrCommon::QrRunGuard guard("qters.farme.chaos.v1");
     if ( !guard.tryToRun() ) {
+        qDebug() << "framer start fail, progress is about to quit.";
         return 0;
     }
 
@@ -35,7 +36,10 @@ int main(int argc, char *argv[])
     QrChaosFramer framer;
     framer.setConfig(frameConfig);
     framer.setMainWindow(&mwindow);
-    framer.start();
+    if(! framer.start()) {
+        qDebug() << "framer start fail, progress is about to quit.";
+        return 0;
+    }
 
     return app.exec();
 }
