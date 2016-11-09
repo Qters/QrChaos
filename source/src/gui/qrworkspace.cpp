@@ -53,7 +53,7 @@ QrWorkspace::QrWorkspace(QWidget *parent)
     });
 }
 
-int QrWorkspace::appendTab(QWidget *widget, QString label)
+int QrWorkspace::appendTab(QWidget *widget, QString label, bool autoExpanding /*= true*/)
 {
     if (nullptr == widget) {
         qWarning() << "widget append to tag is null.";
@@ -71,9 +71,13 @@ int QrWorkspace::appendTab(QWidget *widget, QString label)
         return preIndex;
     }
 
+    if(autoExpanding) {
+        widget->setSizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
+    }
+
     auto wrapWidget = new QScrollArea();
     wrapWidget->setWidget (widget);
-    wrapWidget->setWidgetResizable (false);
+    wrapWidget->setWidgetResizable(true);
     d->existedTabWidgets[widget] = wrapWidget;
 
     auto tabIndex = q->addTab(wrapWidget, label);

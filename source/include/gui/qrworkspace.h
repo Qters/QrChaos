@@ -24,7 +24,7 @@ public:
     explicit QrWorkspace(QWidget *parent = nullptr);
 
 public:
-    static int appendTab(QWidget *widget, QString label);
+    static int appendTab(QWidget *widget, QString label, bool autoExpanding = true);
 };
 
 NS_CHAOS_BASE_END
