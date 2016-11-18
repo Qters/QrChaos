@@ -62,6 +62,7 @@ void QrNavigationPrivate::addTotalTabPage(){
     totalTabPage->initModelByDbData(tblNavigationHelper.getData());
     QObject::connect(totalTabPage, &QrNavigationTabPage::removeButton,
                      [this](QString path, QPushButton* itemButton){
+        Q_UNUSED(itemButton);
         auto findIter = this->pathButtonContainer.find(path);
         Q_ASSERT(findIter.value() == itemButton);
         this->pathButtonContainer.erase(findIter);

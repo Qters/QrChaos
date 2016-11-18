@@ -7,6 +7,7 @@
 
 #include "qrchaosframer.h"
 #include "gui/qrchaosmainwindow.h"
+#include "qrchaosapplication.h"
 
 USING_NS_CHAOS_BASE;
 
@@ -18,6 +19,9 @@ int main(int argc, char *argv[])
         return 0;
     }
 
+    QCoreApplication::setOrganizationName("Qters");
+    QCoreApplication::setApplicationName("chaos");
+
     Qters::QrOrm::QrSqlDatabaseParams dbParam;
     dbParam.driverName = "QSQLITE";
     dbParam.folder = "data";
@@ -27,18 +31,9 @@ int main(int argc, char *argv[])
     frameConfig.dbParams = dbParam;
     frameConfig.installLog = false;
 
-    QApplication app(argc, argv);
-
-    QCoreApplication::setOrganizationName("Qters");
-    QCoreApplication::setApplicationName("chaos");
-
-    QrChaosMainwindow mwindow;
-    QrChaosFramer framer;
-    framer.setConfig(frameConfig);
-    framer.setMainWindow(&mwindow);
-    if(! framer.start()) {
-        qDebug() << "framer start fail, progress is about to quit.";
-        return 0;
+    QrChaosApplication app(argc, argv);
+    if(! app.init(frameConfig)) {
+        return -1;
     }
 
     return app.exec();

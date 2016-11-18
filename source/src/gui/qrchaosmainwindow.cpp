@@ -34,6 +34,11 @@ void QrChaosMainwindowPrivate::loadUIFramework() {
                       [this](int index){
         frameWindow->getWorkspace()->removeTab(index);
     });
+    QObject::connect (frameWindow->getWorkspace(), &QrWorkspace::currentChanged,
+                      [this](int index){
+        Q_Q(QrChaosMainwindow);
+        emit q->workspaceChange(index);
+    });
 }
 
 void QrChaosMainwindowPrivate::initShortcuts() {
