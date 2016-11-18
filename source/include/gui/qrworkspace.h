@@ -13,6 +13,7 @@ QT_END_NAMESPACE
 
 NS_CHAOS_BASE_BEGIN
 
+class QrWorkspaceWidget;
 class QrWorkspacePrivate;
 
 class CHAOSBASE_SHAREDEXPORT QrWorkspace : public QTabWidget
@@ -24,7 +25,7 @@ public:
     explicit QrWorkspace(QWidget *parent = nullptr);
 
 public:
-    static int appendTab(QWidget *widget, QString label, bool autoExpanding = true);
+    static int appendTab(QrWorkspaceWidget *widget, QString label, bool autoExpanding = true);
 };
 
 NS_CHAOS_BASE_END

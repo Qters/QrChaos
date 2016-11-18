@@ -3,11 +3,13 @@
 
 #include <QWidget>
 
+#include "gui/qrworkspacewidget.h"
+
 namespace Ui {
 class QrProductForm;
 }
 
-class QrProductForm : public QWidget
+class QrProductForm : public Qters::QrFrame::QrChaos::QrBase::QrWorkspaceWidget
 {
     Q_OBJECT
 

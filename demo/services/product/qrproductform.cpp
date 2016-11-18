@@ -1,8 +1,10 @@
 #include "qrproductform.h"
 #include "ui_qrproductform.h"
 
+USING_NS_CHAOS_BASE;
+
 QrProductForm::QrProductForm(QWidget *parent) :
-    QWidget(parent),
+    QrWorkspaceWidget(parent),
     ui(new Ui::QrProductForm)
 {
     ui->setupUi(this);

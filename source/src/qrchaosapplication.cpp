@@ -31,9 +31,6 @@ QrChaosApplication::QrChaosApplication(int &argc, char **argv)
     : QApplication(argc, argv),
       d_ptr(new QrChaosApplicationPrivate(this))
 {
-    Q_D(QrChaosApplication);
-    connect(&d->mwindow, &QrChaosMainwindow::workspaceChange,
-            this, &QrChaosApplication::sig_workspaceChange);
 }
 
 QrChaosApplication::~QrChaosApplication()

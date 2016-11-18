@@ -32,9 +32,6 @@ public:
     QrChaosApplication(int &argc, char **argv);
     virtual ~QrChaosApplication();
 
-Q_SIGNALS:
-    void sig_workspaceChange(int index);
-
 public:
     virtual bool init(const QrFramerConfig& config);
 };

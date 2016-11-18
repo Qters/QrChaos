@@ -21,9 +21,6 @@ class CHAOSBASE_SHAREDEXPORT QrChaosMainwindow : public Qters::QrFrame::QrMainWi
 public:
     explicit QrChaosMainwindow(QWidget *parent = nullptr);
 
-Q_SIGNALS:
-    void workspaceChange(int index);
-
     // QrMainWindow interface
 public:
     virtual bool init() override;

@@ -1,5 +1,6 @@
 ﻿#include "gui/qrchaosmainwindow.h"
 
+#include <QtCore/qdebug.h>
 #include <QtWidgets/qaction.h>
 #include <QtWidgets/qdesktopwidget.h>
 #include <QtWidgets/qapplication.h>
@@ -29,16 +30,6 @@ void QrChaosMainwindowPrivate::loadUIFramework() {
     Q_Q(QrChaosMainwindow);
     frameWindow = new QrFrameWindow(q);
     q->setCentralWidget(frameWindow);
-
-    QObject::connect (frameWindow->getWorkspace(), &QrWorkspace::tabCloseRequested,
-                      [this](int index){
-        frameWindow->getWorkspace()->removeTab(index);
-    });
-    QObject::connect (frameWindow->getWorkspace(), &QrWorkspace::currentChanged,
-                      [this](int index){
-        Q_Q(QrChaosMainwindow);
-        emit q->workspaceChange(index);
-    });
 }
 
 void QrChaosMainwindowPrivate::initShortcuts() {

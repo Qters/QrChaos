@@ -6,21 +6,25 @@
 #include <QtWidgets/qscrollarea.h>
 #include <QtWidgets/qtabbar.h>
 
+#include "gui/qrworkspacewidget.h"
+
 NS_CHAOS_BASE_BEGIN
 
 class QrWorkspacePrivate{
     QR_DECLARE_PUBLIC(QrWorkspace)
+
+public:
+    static QrWorkspace* qInstance;
+
+    int lastIndex = -1;
+    QMap<QrWorkspaceWidget*, QScrollArea*> existedTabWidgets;
+
 public:
     QrWorkspacePrivate(QrWorkspace *q);
 
 public:
     static QrWorkspacePrivate* dInstance();
-
-public:
-    QMap<QWidget*, QScrollArea*> existedTabWidgets;
-
-public:
-    static QrWorkspace* qInstance;
+    QrWorkspaceWidget* getWorkspaceWidget(int index);
 };
 
 QrWorkspace* QrWorkspacePrivate::qInstance = nullptr;
@@ -35,6 +39,13 @@ QrWorkspacePrivate *QrWorkspacePrivate::dInstance(){
     return QrWorkspacePrivate::qInstance->d_func();
 }
 
+QrWorkspaceWidget *QrWorkspacePrivate::getWorkspaceWidget(int index)
+{
+    Q_Q(QrWorkspace);
+    return qobject_cast<QrWorkspaceWidget*>(
+                qobject_cast<QScrollArea*>(q->widget(index))->widget());
+}
+
 NS_CHAOS_BASE_END
 
 
@@ -47,13 +58,24 @@ QrWorkspace::QrWorkspace(QWidget *parent)
     setTabsClosable(true);
 
     connect(this, &QrWorkspace::tabCloseRequested, [this](int index){
-        this->d_func()->existedTabWidgets.remove(
-                    qobject_cast<QScrollArea*>(this->widget(index))->widget());
-        this->removeTab(index);
+        Q_D(QrWorkspace);
+        QrWorkspaceWidget *workspaceWidget = d->getWorkspaceWidget(index);
+        if(! workspaceWidget->closeRequested()) {
+            qDebug() << "workspace widget reject to close.";
+            return;
+        }
+        d->existedTabWidgets.remove(workspaceWidget);
+        removeTab(index);
+    });
+    connect(this, &QrWorkspace::currentChanged, [this](int index){
+        Q_D(QrWorkspace);
+        QrWorkspaceWidget *workspaceWidget = d->getWorkspaceWidget(index);
+        workspaceWidget->switchFrom(d->lastIndex);
+        d->lastIndex = index;
     });
 }
 
-int QrWorkspace::appendTab(QWidget *widget, QString label, bool autoExpanding /*= true*/)
+int QrWorkspace::appendTab(QrWorkspaceWidget *widget, QString label, bool autoExpanding /*= true*/)
 {
     if (nullptr == widget) {
         qWarning() << "widget append to tag is null.";
@@ -68,6 +90,9 @@ int QrWorkspace::appendTab(QWidget *widget, QString label, bool autoExpanding /*
         auto preIndex = q->indexOf(d->existedTabWidgets[widget]);
         q->setTabText(preIndex, label);
         q->setCurrentIndex(preIndex);
+
+        d->lastIndex = preIndex;
+
         return preIndex;
     }
 
@@ -82,6 +107,8 @@ int QrWorkspace::appendTab(QWidget *widget, QString label, bool autoExpanding /*
 
     auto tabIndex = q->addTab(wrapWidget, label);
     q->setCurrentIndex(tabIndex);
+
+    d->lastIndex = tabIndex;
 
     return tabIndex;
 }

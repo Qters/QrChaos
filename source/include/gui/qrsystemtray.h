@@ -4,8 +4,6 @@
 #include "qrglobal.h"
 #include "qrchaosbase_global.h"
 
-//NS_CHAOS_BASE_BEGIN
-
 NS_CHAOS_BASE_BEGIN
 
 class QrSystemTrayPrivate;

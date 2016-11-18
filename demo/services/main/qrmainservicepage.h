@@ -4,13 +4,14 @@
 #include <QWidget>
 
 #include "qrchaosmainservice_global.h"
+#include "gui/qrworkspacewidget.h"
 
 namespace Ui {
 class QrMainServicePage;
 }
 
 NS_CHAOS_MAIN_SERVICE_BEGIN
-class QrMainServicePage : public QWidget
+class QrMainServicePage : public Qters::QrFrame::QrChaos::QrBase::QrWorkspaceWidget
 {
     Q_OBJECT
 public:
