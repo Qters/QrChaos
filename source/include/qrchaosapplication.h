@@ -9,16 +9,17 @@
 
 #include "qrchaosbase_global.h"
 
-#if defined(QrChaosApp)
-#undef QrChaosApp
-#endif
-#define QrChaosApp (static_cast<QrChaosApplication *>(QCoreApplication::instance()))
-
 NS_QRFRAME_BEGIN
 class QrFramerConfig;
 NS_QRFRAME_END
 
 NS_CHAOS_BASE_BEGIN
+class QrChaosApplication;
+
+#if defined(QrChaosApp)
+#undef QrChaosApp
+#endif
+#define QrChaosApp (static_cast<QrChaosApplication *>(QCoreApplication::instance()))
 
 class QrChaosApplicationPrivate;
 class CHAOSBASE_SHAREDEXPORT QrChaosApplication : public QApplication
@@ -32,7 +33,7 @@ public:
     virtual ~QrChaosApplication();
 
 Q_SIGNALS:
-    void sig_workspaceChange();
+    void sig_workspaceChange(int index);
 
 public:
     virtual bool init(const QrFramerConfig& config);
