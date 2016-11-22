@@ -6,41 +6,57 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>494</width>
-    <height>273</height>
+    <width>975</width>
+    <height>397</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="title">
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(85, 0, 255);</string>
+  </property>
+  <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>60</y>
-     <width>54</width>
-     <height>12</height>
+     <x>0</x>
+     <y>0</y>
+     <width>981</width>
+     <height>401</height>
     </rect>
    </property>
-   <property name="text">
-    <string>Qters</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="presentation">
-   <property name="geometry">
-    <rect>
-     <x>60</x>
-     <y>80</y>
-     <width>351</width>
-     <height>121</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>  A wonderful qt client develop framework, support to do job by the collaboration between company departments. </string>
-   </property>
-   <property name="wordWrap">
-    <bool>true</bool>
-   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="title">
+      <property name="text">
+       <string>Qters</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="presentation">
+      <property name="text">
+       <string>  A wonderful qt client develop framework, support to do job by the collaboration between company departments. </string>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButton">
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>

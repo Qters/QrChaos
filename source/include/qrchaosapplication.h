@@ -1,4 +1,4 @@
-#ifndef QRCHAOSAPPLICATION_H
+﻿#ifndef QRCHAOSAPPLICATION_H
 #define QRCHAOSAPPLICATION_H
 
 #include <QtCore/qcoreapplication.h>
@@ -15,6 +15,7 @@ NS_QRFRAME_END
 
 NS_CHAOS_BASE_BEGIN
 class QrChaosApplication;
+class QrChaosMainwindow;
 
 #if defined(QrChaosApp)
 #undef QrChaosApp
@@ -31,6 +32,9 @@ class CHAOSBASE_SHAREDEXPORT QrChaosApplication : public QApplication
 public:
     QrChaosApplication(int &argc, char **argv);
     virtual ~QrChaosApplication();
+
+public:
+    QrChaosMainwindow* getMainWindow();
 
 public:
     virtual bool init(const QrFramerConfig& config);

@@ -1,4 +1,4 @@
-#include "qrchaosapplication.h"
+﻿#include "qrchaosapplication.h"
 
 #include <QtCore/qdebug.h>
 
@@ -36,6 +36,12 @@ QrChaosApplication::QrChaosApplication(int &argc, char **argv)
 QrChaosApplication::~QrChaosApplication()
 {
 
+}
+
+QrChaosMainwindow *QrChaosApplication::getMainWindow()
+{
+    Q_D(QrChaosApplication);
+    return &d->mwindow;
 }
 
 bool QrChaosApplication::init(const QrFramerConfig& config)

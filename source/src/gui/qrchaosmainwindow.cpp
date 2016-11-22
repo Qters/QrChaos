@@ -88,6 +88,12 @@ QrChaosMainwindow::QrChaosMainwindow(QWidget* parent)
     setWindowFlags(Qt::FramelessWindowHint);
 }
 
+QrFrameWindow *QrChaosMainwindow::getFrameWindow()
+{
+    Q_D(QrChaosMainwindow);
+    return d->frameWindow;
+}
+
 bool QrChaosMainwindow::init()
 {
     Q_D(QrChaosMainwindow);

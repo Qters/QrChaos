@@ -1,4 +1,4 @@
-#ifndef QRCHAOSMAINWINDOW_H
+﻿#ifndef QRCHAOSMAINWINDOW_H
 #define QRCHAOSMAINWINDOW_H
 
 #include "qrmainwindow.h"
@@ -11,7 +11,7 @@ class QSplitter;
 QT_END_NAMESPACE
 
 NS_CHAOS_BASE_BEGIN
-
+class QrFrameWindow;
 class QrChaosMainwindowPrivate;
 
 class CHAOSBASE_SHAREDEXPORT QrChaosMainwindow : public Qters::QrFrame::QrMainWindow
@@ -20,6 +20,9 @@ class CHAOSBASE_SHAREDEXPORT QrChaosMainwindow : public Qters::QrFrame::QrMainWi
     QR_DECLARE_PRIVATE(QrChaosMainwindow)
 public:
     explicit QrChaosMainwindow(QWidget *parent = nullptr);
+
+public:
+    QrFrameWindow* getFrameWindow();
 
     // QrMainWindow interface
 public:
