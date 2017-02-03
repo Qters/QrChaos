@@ -42,8 +42,13 @@ QrWorkspacePrivate *QrWorkspacePrivate::dInstance(){
 QrWorkspaceWidget *QrWorkspacePrivate::getWorkspaceWidget(int index)
 {
     Q_Q(QrWorkspace);
-    return qobject_cast<QrWorkspaceWidget*>(
-                qobject_cast<QScrollArea*>(q->widget(index))->widget());
+    QScrollArea* wrapWidget = qobject_cast<QScrollArea*>(q->widget(index));
+    if(nullptr == wrapWidget) {
+        qDebug() << "wrap widget is nullptr";
+        return nullptr;
+    }
+
+    return qobject_cast<QrWorkspaceWidget*>(wrapWidget->widget());
 }
 
 NS_CHAOS_BASE_END
@@ -60,6 +65,10 @@ QrWorkspace::QrWorkspace(QWidget *parent)
     connect(this, &QrWorkspace::tabCloseRequested, [this](int index){
         Q_D(QrWorkspace);
         QrWorkspaceWidget *workspaceWidget = d->getWorkspaceWidget(index);
+        if(nullptr == workspaceWidget) {
+            qDebug() << "workspace widget is nullptr.";
+            return;
+        }
         if(! workspaceWidget->closeRequested()) {
             qDebug() << "workspace widget reject to close.";
             return;
@@ -70,7 +79,11 @@ QrWorkspace::QrWorkspace(QWidget *parent)
     connect(this, &QrWorkspace::currentChanged, [this](int index){
         Q_D(QrWorkspace);
         QrWorkspaceWidget *workspaceWidget = d->getWorkspaceWidget(index);
-        workspaceWidget->switchFrom(d->lastIndex);
+        if(nullptr != workspaceWidget) {
+            workspaceWidget->switchFrom(d->lastIndex);
+        } else {
+            qDebug() << "workspace widget is nullptr.";
+        }
         d->lastIndex = index;
     });
 }
@@ -100,7 +113,7 @@ int QrWorkspace::appendTab(QrWorkspaceWidget *widget, QString label, bool autoEx
         widget->setSizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
     }
 
-    auto wrapWidget = new QScrollArea();
+    auto wrapWidget = new QScrollArea(q);
     wrapWidget->setWidget (widget);
     wrapWidget->setWidgetResizable(true);
     d->existedTabWidgets[widget] = wrapWidget;
