@@ -64,4 +64,8 @@
         <file>images/blue/product_service/product7.png</file>
         <file>images/blue/product_service/product0.png</file>
     </qresource>
+    <qresource prefix="/"/>
+    <qresource prefix="/splash">
+        <file>images/blue/splash.jpg</file>
+    </qresource>
 </RCC>

@@ -30,6 +30,8 @@ int main(int argc, char *argv[])
     Qters::QrFrame::QrFramerConfig frameConfig;
     frameConfig.dbParams = dbParam;
     frameConfig.installLog = false;
+    frameConfig.splashscreen = true;
+    frameConfig.splashscreenBgQrcPath = ":/splash/images/blue/splash.jpg";
 
     QrChaosApplication app(argc, argv);
     if(! app.init(frameConfig)) {

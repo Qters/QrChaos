@@ -15,6 +15,15 @@ QToolButton {
 	background-position : center;
 }
 
+QProgressBar {
+    color:black;
+    font:30px;
+    text-align:center;
+}
+QProgressBar::chunk {
+    background-color: rgb(202, 165, 14);
+}
+
 /*
 ----------------------------------------------------
 	Golbal
