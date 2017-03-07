@@ -38,6 +38,7 @@ public:
 
 public:
     virtual bool init(const QrFramerConfig& config);
+    virtual bool start();
 };
 
 NS_CHAOS_BASE_END

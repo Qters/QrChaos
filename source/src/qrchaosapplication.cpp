@@ -50,6 +50,18 @@ bool QrChaosApplication::init(const QrFramerConfig& config)
     d->framer.setMainWindow(&d->mwindow);
     d->framer.setConfig(config);
 
+    if(! d->framer.init()) {
+        qDebug() << "framer init fail, progress is about to quit.";
+        return false;
+    }
+
+    return true;
+}
+
+bool QrChaosApplication::start()
+{
+    Q_D(QrChaosApplication);
+
     if(! d->framer.start()) {
         qDebug() << "framer start fail, progress is about to quit.";
         return false;
