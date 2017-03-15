@@ -184,14 +184,14 @@ void QrHeaderPrivate::connectSignals() {
     });
 
     QObject::connect(maximumnButton, &QToolButton::clicked, [this](){
-        if(!getMainWindow()->isFullScreen()) {
-            getMainWindow()->showFullScreen();
+        if(!getMainWindow()->isMaximized()) {
+            getMainWindow()->showMaximized();
             switchMaxOrNormal(true);
         }
     });
 
     QObject::connect(restoreBtn, &QToolButton::clicked, [this](){
-        if(getMainWindow()->isFullScreen()) {
+        if(getMainWindow()->isMaximized()) {
             getMainWindow()->showNormal();
             switchMaxOrNormal(false);
         }
@@ -259,11 +259,11 @@ void QrHeader::mouseDoubleClickEvent(QMouseEvent *event)
     Q_UNUSED(event);
     Q_D(QrHeader);
     auto mainWindow = d->getMainWindow ();
-    if (mainWindow->isFullScreen ()) {
+    if (mainWindow->isMaximized ()) {
         mainWindow->showNormal ();
         d->switchMaxOrNormal(false);
     } else {
-        mainWindow->showFullScreen();
+        mainWindow->showMaximized();
         d->switchMaxOrNormal(true);
     }
 }
@@ -275,7 +275,7 @@ void QrHeader::mouseMoveEvent(QMouseEvent *event)
         return;
     }
     if (Qt::LeftButton == event->buttons()) {
-        if(d->getMainWindow()->isFullScreen()) {
+        if(d->getMainWindow()->isMaximized()) {
             d->switchMaxOrNormal(true);
         } else {
             d->getMainWindow()->move(event->globalPos() - d->srcPos);
