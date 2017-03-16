@@ -20,7 +20,7 @@ public:
 public:
     void loadUIFramework();
     void initShortcuts();
-    void setMiniumSize();
+    void initSize();
 
 public:
     QrFrameWindow *frameWindow = nullptr;
@@ -70,11 +70,11 @@ void QrChaosMainwindowPrivate::initShortcuts() {
                      this->frameWindow->getStatusbar(), &QrStatusBar::onFullScreenMode);
 }
 
-void QrChaosMainwindowPrivate::setMiniumSize() {
+void QrChaosMainwindowPrivate::initSize() {
     Q_Q(QrChaosMainwindow);
     const QRect& screenRect = QApplication::desktop()->availableGeometry();
     QSize scrSize(screenRect.width()*0.6,screenRect.height()*0.6);
-    q->setMinimumSize(scrSize);
+    q->resize(scrSize);
 }
 
 NS_CHAOS_BASE_END
@@ -99,7 +99,7 @@ bool QrChaosMainwindow::init()
     Q_D(QrChaosMainwindow);
     d->loadUIFramework();
     d->initShortcuts();
-    d->setMiniumSize();
+    d->initSize();
 
     return true;
 }
