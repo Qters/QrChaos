@@ -54,13 +54,13 @@ void QrNavigationPrivate::addTotalTabPage(){
     Q_Q(QrNavigation);
     QrTblNavigationHelper tblNavigationHelper;
     totalTabPage = new QrNavigationTabPage(q);
-    QObject::connect(totalTabPage, &QrNavigationTabPage::addButton,
+    q->connect(totalTabPage, &QrNavigationTabPage::addButton,
                      [this](QString path, QPushButton* itemButton){
         this->pathButtonContainer[path] = itemButton;
     });
 
     totalTabPage->initModelByDbData(tblNavigationHelper.getData());
-    QObject::connect(totalTabPage, &QrNavigationTabPage::removeButton,
+    q->connect(totalTabPage, &QrNavigationTabPage::removeButton,
                      [this](QString path, QPushButton* itemButton){
         Q_UNUSED(itemButton);
         auto findIter = this->pathButtonContainer.find(path);
@@ -106,12 +106,12 @@ void QrNavigationPrivate::loadUI()
     mainLayout->addWidget(navigationTab);
     q->setLayout(mainLayout);
 
-    QObject::connect(navigationTab, &QTabWidget::currentChanged, [this](int index){
+    q->connect(navigationTab, &QTabWidget::currentChanged, [this](int index){
         auto curNavTab = qobject_cast<QrNavigationTabPage*>(this->navigationTab->widget(index));
         this->header->navigationModelProxy(curNavTab->modelProxy());
     });
 
-    QObject::connect(this->header, &QrNavigationHeader::beginSearch, [this](){
+    q->connect(this->header, &QrNavigationHeader::beginSearch, [this](){
         qobject_cast<QrNavigationTabPage*>(navigationTab->currentWidget())->expandAll();
     });
 }
@@ -142,6 +142,7 @@ bool QrNavigation::qrconnect(const QString &path,
         return false;
     }
 
-    QObject::connect (pushButton, SIGNAL(clicked ()), receiver, member);
+    QrNavigationPrivate::qInstance->connect(
+                pushButton, SIGNAL(clicked ()), receiver, member);
     return true;
 }

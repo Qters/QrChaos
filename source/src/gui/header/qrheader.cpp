@@ -3,7 +3,6 @@
 #include <QtCore/qfile.h>
 #include <QtCore/qdebug.h>
 #include <QtCore/qtextstream.h>
-#include <QtCore/qsettings.h>
 #include <QtWidgets/qapplication.h>
 #include <QtWidgets/qmainwindow.h>
 #include <QtWidgets/qtoolbutton.h>
@@ -170,7 +169,8 @@ bool QrHeaderPrivate::loadSkinInfo() {
     }
     skinButton->setMenu(skinMenu);
 
-    QObject::connect(skinActions, &QActionGroup::triggered, [](QAction *action){
+    Q_Q(QrHeader);
+    q->connect(skinActions, &QActionGroup::triggered, [](QAction *action){
         QrStyle::loadSkin(static_cast<QrStyle::SkinIndex>(
                               action->data().toInt()));
     });
@@ -179,25 +179,26 @@ bool QrHeaderPrivate::loadSkinInfo() {
 }
 
 void QrHeaderPrivate::connectSignals() {
-    QObject::connect(closeButton, &QToolButton::clicked, [this](){
+    Q_Q(QrHeader);
+    q->connect(closeButton, &QToolButton::clicked, [this](){
         getMainWindow()->close();
     });
 
-    QObject::connect(maximumnButton, &QToolButton::clicked, [this](){
+    q->connect(maximumnButton, &QToolButton::clicked, [this](){
         if(!getMainWindow()->isMaximized()) {
             getMainWindow()->showMaximized();
             switchMaxOrNormal(true);
         }
     });
 
-    QObject::connect(restoreBtn, &QToolButton::clicked, [this](){
+    q->connect(restoreBtn, &QToolButton::clicked, [this](){
         if(getMainWindow()->isMaximized()) {
             getMainWindow()->showNormal();
             switchMaxOrNormal(false);
         }
     });
 
-    QObject::connect(minimumButton, &QToolButton::clicked, [this](){
+    q->connect(minimumButton, &QToolButton::clicked, [this](){
         getMainWindow()->showMinimized();
     });
 
@@ -210,7 +211,8 @@ void QrHeaderPrivate::connectSignals() {
 
 void QrHeaderPrivate::connectPressSignal(QAbstractButton *toolButton)
 {
-    QObject::connect(toolButton, &QAbstractButton::pressed, [this](){
+    Q_Q(QrHeader);
+    q->connect(toolButton, &QAbstractButton::pressed, [this](){
         clickOnButton = true;
     });
 }

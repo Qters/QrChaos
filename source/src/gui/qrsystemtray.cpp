@@ -87,7 +87,8 @@ bool QrSystemTrayPrivate::initTray() {
 
     systemTray.show();
 
-    QObject::connect(qApp, &QApplication::aboutToQuit, [this](){
+    QObject::connect(
+                qApp, &QApplication::aboutToQuit, [this](){
         systemTray.hide();
     });
 
@@ -115,6 +116,6 @@ bool QrSystemTray::qrconnect(const QString &key,
         return false;
     }
 
-    QObject::connect (action, SIGNAL(triggered(bool)), receiver, member);
+    QObject::connect(action, SIGNAL(triggered(bool)), receiver, member);
     return true;
 }

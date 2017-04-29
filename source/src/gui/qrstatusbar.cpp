@@ -62,9 +62,9 @@ void QrStatusBarPrivate::loadUI()
 void QrStatusBarPrivate::connectDisplayMode()
 {
     Q_Q(QrStatusBar);
-    QObject::connect(normalMode, &QPushButton::clicked, q, &QrStatusBar::onNormalMode);
-    QObject::connect(simpleMode, &QPushButton::clicked, q, &QrStatusBar::onSimpleMode);
-    QObject::connect(fullScreenMode, &QPushButton::clicked, q, &QrStatusBar::onFullScreenMode);
+    q->connect(normalMode, &QPushButton::clicked, q, &QrStatusBar::onNormalMode);
+    q->connect(simpleMode, &QPushButton::clicked, q, &QrStatusBar::onSimpleMode);
+    q->connect(fullScreenMode, &QPushButton::clicked, q, &QrStatusBar::onFullScreenMode);
 }
 
 NS_CHAOS_BASE_END

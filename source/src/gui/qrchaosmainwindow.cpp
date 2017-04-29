@@ -37,7 +37,7 @@ void QrChaosMainwindowPrivate::initShortcuts() {
     auto quickCloseWorkspace = new QAction(q);
     quickCloseWorkspace->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_W));
     q->addAction(quickCloseWorkspace);
-    QObject::connect(quickCloseWorkspace, &QAction::triggered, [this](){
+    q->connect(quickCloseWorkspace, &QAction::triggered, [this](){
         auto workspace = this->frameWindow->getWorkspace();
         workspace->removeTab(workspace->currentIndex());
     });
@@ -45,7 +45,7 @@ void QrChaosMainwindowPrivate::initShortcuts() {
     auto quickSwitchWorkspace = new QAction(q);
     quickSwitchWorkspace->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Tab));
     q->addAction(quickSwitchWorkspace);
-    QObject::connect(quickSwitchWorkspace, &QAction::triggered, [this](){
+    q->connect(quickSwitchWorkspace, &QAction::triggered, [this](){
         auto workspace = this->frameWindow->getWorkspace();
         workspace->setCurrentIndex((workspace->currentIndex()+1) % workspace->count());
     });
@@ -54,19 +54,19 @@ void QrChaosMainwindowPrivate::initShortcuts() {
     auto switchNormalMode = new QAction(q);
     switchNormalMode->setShortcut(QKeySequence(Qt::ALT + Qt::Key_1));
     q->addAction(switchNormalMode);
-    QObject::connect(switchNormalMode, &QAction::triggered,
+    q->connect(switchNormalMode, &QAction::triggered,
                      this->frameWindow->getStatusbar(), &QrStatusBar::onNormalMode);
 
     auto switchSimpleMode = new QAction(q);
     switchSimpleMode->setShortcut(QKeySequence(Qt::ALT + Qt::Key_2));
     q->addAction(switchSimpleMode);
-    QObject::connect(switchSimpleMode, &QAction::triggered,
+    q->connect(switchSimpleMode, &QAction::triggered,
                      this->frameWindow->getStatusbar(), &QrStatusBar::onSimpleMode);
 
     auto switchFullMode = new QAction(q);
     switchFullMode->setShortcut(QKeySequence(Qt::ALT + Qt::Key_3));
     q->addAction(switchFullMode);
-    QObject::connect(switchFullMode, &QAction::triggered,
+    q->connect(switchFullMode, &QAction::triggered,
                      this->frameWindow->getStatusbar(), &QrStatusBar::onFullScreenMode);
 }
 

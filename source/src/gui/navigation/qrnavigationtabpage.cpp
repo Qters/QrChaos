@@ -1,4 +1,4 @@
-#include "gui/navigation/qrnavigationtabpage.h"
+﻿#include "gui/navigation/qrnavigationtabpage.h"
 
 #include <QtCore/qdebug.h>
 #include <QtCore/qsortfilterproxymodel.h>
@@ -99,7 +99,8 @@ void QrNavigationTabPagePrivate::initModel(QString parentKey,
 
 void QrNavigationTabPagePrivate::connectConfigs()
 {
-    QObject::connect(this->view, &QrNavigationTabView::clicked, [this](const QModelIndex &index){
+    Q_Q(QrNavigationTabPage);
+    q->connect(this->view, &QrNavigationTabView::clicked, [this](const QModelIndex &index){
         if (! index.isValid()) {
             return;
         }

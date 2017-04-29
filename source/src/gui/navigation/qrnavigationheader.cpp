@@ -1,4 +1,4 @@
-#include "gui/navigation/qrnavigationheader.h"
+﻿#include "gui/navigation/qrnavigationheader.h"
 
 #include <QtWidgets/qpushbutton.h>
 #include <QtWidgets/qboxlayout.h>
@@ -36,7 +36,7 @@ void QrNavigationHeaderPrivate::loadUI()
     search->setObjectName("navigationHeader_search");
     search->setPlaceholderText("Search Navigation");
 
-    QObject::connect(search, &QLineEdit::textChanged, [this](const QString &value){
+    q->connect(search, &QLineEdit::textChanged, [this](const QString &value){
         if (nullptr == this->filterProxy
                 ||  nullptr == this->filterProxy->sourceModel()) {
             return;
