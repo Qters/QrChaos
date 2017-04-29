@@ -3,7 +3,6 @@
 #include <QtCore/qdebug.h>
 #include <QtCore/qfile.h>
 #include <QtCore/qtextstream.h>
-#include <QtWidgets/qapplication.h>
 #include <QtCore/qsettings.h>
 
 #include "db/qrtblframeconfig.h"
@@ -13,29 +12,9 @@ NS_CHAOS_BASE_BEGIN
 class QrStylePrivate{
 public:
     static QVector<QrQssData> qssDbData;
-
-public:
-    static bool loadQss(const QString& qssFileName);
 };
 
 QVector<QrQssData> QrStylePrivate::qssDbData;
-
-bool QrStylePrivate::loadQss(const QString &qssFileName){
-    QFile qssFile(qssFileName);
-    if (!qssFile.exists()) {
-        qDebug() << "Unable to set stylesheet, file not found"
-                 << qssFileName;
-
-        return false;
-    }
-
-    qDebug() << "load stylesheet success" << qssFileName;
-    qssFile.open(QFile::ReadOnly | QFile::Text);
-    QTextStream ts(&qssFile);
-    qApp->setStyleSheet(ts.readAll());
-
-    return true;
-}
 
 NS_CHAOS_BASE_END
 
@@ -52,7 +31,7 @@ QrStyle::QrStyle()
 
 QrStyle::SkinIndex QrStyle::curSkinIndex()
 {
-    QSettings settings;
+    QSettings settings("Qters", "QrChaos");
     return static_cast<SkinIndex>(
                 settings.value(
                     QrStyle::Key_SkinIndex,
@@ -109,14 +88,54 @@ bool QrStyle::loadSkin(SkinIndex skinIndex) {
             continue;
         }
 
-        QSettings settings;
+        QSettings settings("Qters", "QrChaos");
         settings.setValue(QrStyle::Key_SkinIndex,
                           static_cast<int>(skinIndex));
 
 
-        return QrStylePrivate::loadQss(qssData.skinQssFileName);
+        return QrStyle::loadQss(qApp, qssData.skinQssFileName);
     }
 
     return false;
 }
 
+bool QrStyle::loadQssContent(const QString &qssFileName, QString *value)
+{
+    QFile qssFile(qssFileName);
+    if (!qssFile.exists()) {
+        qDebug() << "Unable to set stylesheet, file not found, "
+                 << qssFileName;
+        return false;
+    }
+
+    if(! qssFile.open(QIODevice::ReadOnly | QFile::Text)) {
+        qDebug() << "open qss fail, " << qssFileName;
+        return false;
+    }
+
+    qDebug() << "load stylesheet success" << qssFileName;
+    QTextStream ts(&qssFile);
+    *value = ts.readAll();
+    qDebug() << "qss content:" << *value;
+    return true;
+}
+
+bool QrStyle::loadQss(QApplication *application, const QString &qssFilename)
+{
+    QString qssContent;
+    if (! QrStyle::loadQssContent(qssFilename, &qssContent)) {
+        return false;
+    }
+    application->setStyleSheet(qssContent);
+    return true;
+}
+
+bool QrStyle::loadQss(QWidget *widget, const QString &qssFilename)
+{
+    QString qssContent;
+    if (! QrStyle::loadQssContent(qssFilename, &qssContent)) {
+        return false;
+    }
+    widget->setStyleSheet(qssContent);
+    return true;
+}

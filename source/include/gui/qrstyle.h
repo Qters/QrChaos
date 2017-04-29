@@ -1,6 +1,8 @@
-#ifndef QRSTYLE_H
+﻿#ifndef QRSTYLE_H
 #define QRSTYLE_H
 
+#include <QtWidgets/qapplication.h>
+#include <QtWidgets/qwidget.h>
 #include <QtCore/qvector.h>
 
 #include "qrglobal.h"
@@ -27,6 +29,11 @@ public:
         Default = 0,
         Blue = 1,
     };
+
+public:
+    static bool loadQssContent(const QString &qssFilename, QString *value);
+    static bool loadQss(QApplication *application, const QString &qssFilename);
+    static bool loadQss(QWidget *widget, const QString &qssFilename);
 
 public:
     static SkinIndex curSkinIndex();
